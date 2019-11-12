@@ -5,7 +5,7 @@ let beesHealer = require("swarmutils").beesHealer;
 
 exports.createForObject = function(valueObject, thisObject, localId){
 
-    function filterForSerialisable (valueObject){
+    function messageIdentityFilter (valueObject){
         return valueObject.meta.swarmId;
     }
 
@@ -24,7 +24,7 @@ exports.createForObject = function(valueObject, thisObject, localId){
                     console.log(`Nobody listening for <${$$.CONSTANTS.SWARM_FOR_EXECUTION}>!`);
                 }
             });
-        },null,filterForSerialisable);
+        },null,null);
 
         ret.notify();
 
