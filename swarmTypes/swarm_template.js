@@ -1,7 +1,7 @@
 let cm = require("callflow");
 let CNST = require("../moduleConstants");
 
-var beesHealer = require("swarmutils").beesHealer;
+let beesHealer = require("swarmutils").beesHealer;
 
 exports.createForObject = function(valueObject, thisObject, localId){
 
@@ -29,7 +29,7 @@ exports.createForObject = function(valueObject, thisObject, localId){
     };
 
     let asyncReturn = function(err, result){
-        var context = valueObject.protectedVars.context;
+        let context = valueObject.protectedVars.context;
 
         if(!context && valueObject.meta.waitStack){
             context = valueObject.meta.waitStack.pop();
@@ -79,13 +79,14 @@ exports.createForObject = function(valueObject, thisObject, localId){
 
 
     let ret = cm.createStandardAPIsForSwarms(valueObject, thisObject, localId);
-    /*ret.swarm           = swarmFunction;
+
+    ret.swarm           = swarmFunction;
     ret.home            = home;
     ret.onReturn        = waitResults;
     ret.onResult        = waitResults;
     ret.asyncReturn     = asyncReturn;
     ret.return          = asyncReturn;
-    */
+
 
     ret.autoInit        = function(blockchain){
 
