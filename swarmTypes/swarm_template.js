@@ -5,6 +5,10 @@ let beesHealer = require("swarmutils").beesHealer;
 
 exports.createForObject = function(valueObject, thisObject, localId){
 
+    function filterForSerialisable (valueObject){
+        return valueObject.meta.swarmId;
+    }
+
     let swarmFunction = function(context, phaseName){
         let args =[];
         for(let i = 2; i < arguments.length; i++){
