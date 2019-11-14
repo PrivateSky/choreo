@@ -11,7 +11,17 @@ $$.swarmInstanceManager = require("./swarmTypes/choreographies/swarmInstancesMan
 
 function SwarmEngine(swarmCommunicationStrategy, nameService, serialisationStrategy, securityContext){
 
+    this.init = function(identity){
+
+    }
+
+    this.stop = function(){
+
+    }
+
 }
+
+let psc = require("../../psk-security-context");
 
 module.exports = {
     initialiseSwarmEngine:function(swarmCommunicationStrategy, nameService, serialisationStrategy, securityContext){
@@ -19,35 +29,29 @@ module.exports = {
     },
     createSerialisationStrategy:function(strategyName, ...args){
         switch(strategyName){
-            case "JSON":return require("strategies/JSONSerialisationStrategy").crateStrategy(args);
+            case "json":
+            case "JSON":return require("strategies/JSONSerialisationStrategy").createStrategy(args);
             default: console.error("Unknown strategy ", strategyName);
         }
         return undefined;
     },
     createCommunicationStrategy:function(strategyName, ...args){
         switch(strategyName){
-            case "fake":return require("strategies/fakeCommunicationStrategy").crateStrategy(args);
-            case "sandbox":return require("strategies/fakeCommunicationStrategy").crateStrategy(args);
-            case "serviceWorkers":return require("strategies/fakeCommunicationStrategy").crateStrategy(args);
+            case "fake":return require("strategies/fakeCommunicationStrategy").createStrategy(args);
+            case "sandbox":return require("strategies/fakeCommunicationStrategy").createStrategy(args);
+            case "serviceWorkers":return require("strategies/fakeCommunicationStrategy").createStrategy(args);
             default: console.error("Unknown strategy ", strategyName);
         }
         return undefined;
     },
     createNameService:function(strategyName, ...args){
         switch(strategyName){
-            case "default":return require("strategies/defaultNameService").crateStrategy(args);
+            case "default":return require("strategies/defaultNameService").createStrategy(args);
             default: console.error("Unknown strategy ", strategyName);
         }
         return undefined;
     },
     createSecurityContext:function(strategyName, ...args){
-        switch(strategyName){
-            case "default":return require("strategies/defaultSecurityContext").crateStrategy(args);
-            case "CSB":return require("strategies/defaultSecurityContext").crateStrategy(args);
-            case "sandbox":return require("strategies/defaultSecurityContext").crateStrategy(args);
-            case "rootCSB":return require("strategies/defaultSecurityContext").crateStrategy(args);
-            default: console.error("Unknown strategy ", strategyName);
-        }
-        return undefined;
+        return psc.createSecurityContext(strategyName,...args);
     }
 }

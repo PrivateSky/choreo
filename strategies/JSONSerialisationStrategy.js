@@ -1,7 +1,13 @@
-function JSONStrategy(){
+function JSONSerialisationStrategy(){
+     this.serialise = function(swarmInstance){
 
+     }
+
+    this.deserialise = function(jsonSerialisation){
+
+    }
 }
 
-module.exports.crateStrategy = function(...args){
-    return new JSONStrategy(...args);
+module.exports.createStrategy = function(...args){
+    return new JSONSerialisationStrategy(...args);
 }
