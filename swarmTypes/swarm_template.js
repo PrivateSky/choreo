@@ -78,7 +78,7 @@ exports.createForObject = function(valueObject, thisObject, localId){
             inner.meta.waitStack = [];
             inner.meta.waitStack.push($$.securityContext)
         }
-        $$.swarmsInstancesManager.waitForSwarm(callback, swarm, keepAliveCheck);
+        $$.swarmEngine.waitForSwarm(callback, swarm, keepAliveCheck);
     }
 
 
