@@ -1,9 +1,8 @@
 let cm = require("callflow");
 let CNST = require("../moduleConstants");
 
-let beesHealer = require("swarmutils").beesHealer;
-
 exports.createForObject = function(valueObject, thisObject, localId){
+    let beesHealer = require("swarmutils").beesHealer;
 
     function messageIdentityFilter (valueObject){
         return valueObject.meta.swarmId;
